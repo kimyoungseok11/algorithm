@@ -13,8 +13,8 @@ for(let i = 0; i < numbers.length; i++){
 }
 
 for(let i = 0; i < numbers.length; i++){
-    for(let j = 1; j < numbers.length; j++){
-        for(let k = 2; k < numbers.length; k++){
+    for(let j = i + 1; j < numbers.length; j++){
+        for(let k = j + 1; k < numbers.length; k++){
             result = numbers[i] + numbers[j] + numbers[k];
             if(result <= cardNum[1] && max < result){
                 max = result
