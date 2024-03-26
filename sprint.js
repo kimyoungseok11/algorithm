@@ -1,10 +1,26 @@
 function solution(players, callings) {
-  callings.forEach((elem) => {
-    let index = players.indexOf(elem);
-    let temp = players[index - 1];
-    players.splice(index - 1, 1, elem);
-    // players[index - 1] = elem;
-    // players[index] = temp;
-  });
+  const playerMap = {};
+
+  for (let i = 0; i < players.length; i++) {
+    playerMap[players[i]] = i;
+  }
+
+  console.log(playerMap);
+
+  for (let i = 0; i < callings.length; i++) {
+    const idx = playerMap[callings[i]];
+    const temp = players[idx - 1];
+
+    console.log(idx, temp);
+
+    players[idx - 1] = callings[i];
+    players[idx] = temp;
+
+    playerMap[callings[i]] = idx - 1;
+    playerMap[temp] = idx;
+  }
+
   return players;
 }
+
+solution(["mumu", "soe", "poe", "kai", "mine"], ["kai", "kai", "mine", "mine"]);
