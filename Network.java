@@ -3,15 +3,11 @@ public class Network {
         int answer = 0;
         boolean[] visited = new boolean[n];
 
-        for (int i = 0; i < n; i++) {
-            if (!visited[i]) {
-                dfs(i, computer, visited);
-                answer++;
-            }
-        }
-        
         for (int i = 0; i < visited.length; i++) {
-            System.out.println(visited[i]);
+            if(!visited[i]) {
+                answer += 1;
+                dfs(i, visited, computer);
+            }    
         }
 
         System.out.println(answer);
@@ -24,12 +20,12 @@ public class Network {
         solution(n, computer);
     }
 
-    public static void dfs(int n, int[][] computer, boolean[] visited) {
-        visited[n] = true;
+    public static void dfs(int node, boolean[] visited, int[][] computer) {
+        visited[node] = true;
 
         for (int i = 0; i < computer.length; i++) {
-            if (computer[n][i] == 1 && !visited[i]) {
-                dfs(i, computer, visited);
+            if (!visited[node] && computer[node][i] == 0) {
+                dfs(i, visited, computer);
             }
         }
     }

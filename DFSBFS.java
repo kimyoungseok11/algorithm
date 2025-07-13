@@ -1,63 +1,47 @@
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class DFSBFS {
-    static List<List<Integer>> graph = new ArrayList<>();
-    static boolean[] visited;
+
+    static boolean[] visited = new boolean[9];
+    static int[][] graph = {{},{2,3,8},{1,7},{1,4,5},{3,5},{3,4},{7},{2,6,8},{1,7}};
 
     public static void main(String[] args) {
-        int n = 6; // 노드 수 (1~5번 노드)
-        visited = new boolean[n];
-        
-        for (int i = 0; i < n; i++) {
-            graph.add(new ArrayList<>());
-        }
-
-        // 간선 추가
-        addEdge(1, 2);
-        addEdge(1, 3);
-        addEdge(2, 4);
-        addEdge(2, 5);
-        addEdge(3, 5);
-
-        System.out.println("DFS:");
         dfs(1);
+
+        visited = new boolean[9];
         
-        System.out.println("\nBFS:");
-        Arrays.fill(visited, false); // 방문 배열 초기화
         bfs(1);
     }
 
-    static void addEdge(int u, int v) {
-        graph.get(u).add(v);
-        graph.get(v).add(u); // 무방향 그래프
-    }
-
-    // DFS - 재귀
-    static void dfs(int node) {
+    public static void dfs(int node) {
         visited[node] = true;
+
         System.out.print(node + " ");
-        for (int next : graph.get(node)) {
-            if (!visited[next]) {
+
+        for (int next : graph[node]) {
+            if(!visited[next]) {
                 dfs(next);
             }
         }
     }
 
-    // BFS - 큐 사용
-    static void bfs(int start) {
+    public static void bfs(int start) {
+        System.out.println();
         Queue<Integer> queue = new LinkedList<>();
         visited[start] = true;
         queue.offer(start);
-
         while (!queue.isEmpty()) {
             int node = queue.poll();
-            System.out.print(node + " ");
-            for (int next : graph.get(node)) {
-                if (!visited[next]) {
+            //System.out.print(node + " ");
+            for(int next : graph[node]) {
+                if(!visited[next]) {
                     visited[next] = true;
+                    
                     queue.offer(next);
                 }
             }
+            System.out.println(queue);
         }
     }
 }

@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class jump {
     public static int solution(int n) {
         int ans = 0;
