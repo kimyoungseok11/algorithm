@@ -3,14 +3,14 @@ public class MinSquare {
         int maxWidth = 0;
         int maxHeight = 0;
 
-        for (int[] size : sizes) {
-            int w = Math.max(size[0], size[1]);
-            int h = Math.min(size[0], size[1]);
+        for (int[] cards : sizes) {
+            int w = Math.max(cards[0], cards[1]);
+            int h = Math.min(cards[0], cards[1]);
 
             maxWidth = Math.max(maxWidth, w);
             maxHeight = Math.max(maxHeight, h);
         }
-
+        
         return maxWidth * maxHeight;
     }
 

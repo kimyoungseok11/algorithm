@@ -10,7 +10,7 @@ public class IceCream {
         for (int i = 0; i < iceCase.length; i++) {
             for (int j = 0; j < iceCase[i].length; j++) {
                 if(dfs(i, j)) {
-                    result += 1;
+                    result++;
                 }
             }
         }
@@ -19,16 +19,18 @@ public class IceCream {
     }
 
     public static boolean dfs(int x, int y) {
-        if (x < 0 || x >= n || y <0 || y >= m) return false;
-
-        if (!visited[x][y] && iceCase[x][y] == 0) {
+        if(x < 0 || x >=n || y < 0 || y>= m) return false;
+        
+        if(!visited[x][y] && iceCase[x][y] == 0) {
             visited[x][y] = true;
             dfs(x, y-1);
             dfs(x, y+1);
-            dfs(x+1, y);
             dfs(x-1, y);
+            dfs(x+1, y);
+
             return true;
         }
+        
 
         return false;
     }

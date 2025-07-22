@@ -16,9 +16,7 @@ public class DFSBFS {
 
     public static void dfs(int node) {
         visited[node] = true;
-
-        System.out.print(node + " ");
-
+        System.out.println(node);
         for (int next : graph[node]) {
             if(!visited[next]) {
                 dfs(next);
@@ -31,17 +29,18 @@ public class DFSBFS {
         Queue<Integer> queue = new LinkedList<>();
         visited[start] = true;
         queue.offer(start);
+
         while (!queue.isEmpty()) {
             int node = queue.poll();
-            //System.out.print(node + " ");
-            for(int next : graph[node]) {
+
+            System.out.println(node);
+            for (int next : graph[node]) {
                 if(!visited[next]) {
                     visited[next] = true;
-                    
+
                     queue.offer(next);
                 }
             }
-            System.out.println(queue);
         }
     }
 }
