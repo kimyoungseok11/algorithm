@@ -12,6 +12,8 @@ public class DFSBFS {
         visited = new boolean[9];
         
         bfs(1);
+
+        visited = new boolean[9];
     }
 
     public static void dfs(int node) {
@@ -25,7 +27,6 @@ public class DFSBFS {
     }
 
     public static void bfs(int start) {
-        System.out.println();
         Queue<Integer> queue = new LinkedList<>();
         visited[start] = true;
         queue.offer(start);
