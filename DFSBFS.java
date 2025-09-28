@@ -10,7 +10,7 @@ public class DFSBFS {
         dfs(1);
 
         visited = new boolean[9];
-        
+        System.out.println();
         bfs(1);
 
         visited = new boolean[9];
@@ -18,7 +18,7 @@ public class DFSBFS {
 
     public static void dfs(int node) {
         visited[node] = true;
-        System.out.println(node);
+        System.out.print(node + " ");
         for (int next : graph[node]) {
             if(!visited[next]) {
                 dfs(next);
@@ -33,12 +33,11 @@ public class DFSBFS {
 
         while (!queue.isEmpty()) {
             int node = queue.poll();
+            System.out.print(node + " ");
 
-            System.out.println(node);
             for (int next : graph[node]) {
-                if(!visited[next]) {
+                if (!visited[next]) {
                     visited[next] = true;
-
                     queue.offer(next);
                 }
             }

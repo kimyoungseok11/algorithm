@@ -5,7 +5,6 @@ import java.util.Map;
 
 public class Squeez {
     public static int[] solution(String msg) {
-        int[] answer = {};
         List<Integer> answerList = new ArrayList<>();
         Map<String, Integer> map = new HashMap<>();
         int nextNUm = 27;
@@ -41,7 +40,7 @@ public class Squeez {
 
             i = i + w.length();
         }
-        
+
         return answerList.stream().mapToInt(Integer::intValue).toArray();
     }
     public static void main(String[] args) {
