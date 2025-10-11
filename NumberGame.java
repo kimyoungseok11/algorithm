@@ -11,7 +11,6 @@ public class NumberGame {
                 answer += binary.charAt(numLen - 1);
                 order += 1;
                 p = p + m;
-                System.out.println(p);
             } else {
                 order += 1;
             }
