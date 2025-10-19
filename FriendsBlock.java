@@ -3,53 +3,62 @@ public class FriendsBlock {
 
     public static int solution(int m, int n, String[] board) {
         int answer = 0;
-        char[][] map = new char[m][n];
-        boolean[][] marked;
-        for (int i = 0; i < board.length; i++) map[i] = board[i].toCharArray();
-
+        char[][] grid = new char[m][n];
+        
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length(); j++) {
+                grid[i][j] = board[i].charAt(j);
+            }
+        }
+        
         while (true) {
-            marked = new boolean[m][n];
+            boolean[][] sameChar = new boolean[m][n];
             int count = 0;
 
-            for (int i = 0; i < m - 1; i++) {
-                for (int j = 0; j < n - 1; j++) {
-                    char c = map[i][j];
-                    if (c == ' ') continue;
-                    
-                    if (map[i + 1][j] == c && map[i][j + 1] == c && map[i + 1][j + 1] == c) {
-                        marked[i][j] = true;
-                        marked[i+1][j] = true;
-                        marked[i][j+1] = true;
-                        marked[i+1][j+1] = true;
+            for (int i = 0; i < grid.length - 1; i++) {
+                for (int j = 0; j < grid[i].length - 1; j++) {
+                    char letter = grid[i][j];
+                    if (letter == ' ') {
+                        continue;
+                    } else {
+                        if (letter == grid[i + 1][j] && letter == grid[i][j + 1] && letter == grid[i + 1][j + 1]) {
+                            sameChar[i][j] = true;
+                            sameChar[i+1][j] = true;
+                            sameChar[i][j+1] = true;
+                            sameChar[i+1][j+1] = true;
+                        }
                     }
                 }
             }
 
-            for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
-                    if (marked[i][j]) count+=1;
+            for (int i = 0; i < sameChar.length; i++) {
+                for (int j = 0; j < sameChar[i].length; j++) {
+                    if (sameChar[i][j]) {
+                        count += 1;
+                    }
                 }
             }
-
-            if(count == 0) break;
+            
             answer += count;
+            if (count == 0) {
+                break;
+            }
 
             for (int col = 0; col < n; col++) {
                 int write = m - 1;                 // 아래에서 채워 넣을 위치
                 for (int row = m - 1; row >= 0; row--) {
-                    if (!marked[row][col]) {       // 지울 칸이 아니면 아래로 내림
-                        map[write][col] = map[row][col];
-                        write = write - 1;
+                    if (!sameChar[row][col]) {       // 지울 칸이 아니면 아래로 내림
+                        grid[write--][col] = grid[row][col];
                     }
                 }
                 // 위쪽 나머지는 빈칸으로
                 while (write >= 0) {
-                    map[write][col] = ' ';        // 0(널문자)로 빈칸 표시
-                    write = write - 1;
+                    grid[write--][col] = ' ';        // 0(널문자)로 빈칸 표시
                 }
             }
-        }
 
+            count = 0;
+        }
         System.out.println(answer);
         return answer;
     }
